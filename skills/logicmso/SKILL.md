@@ -89,6 +89,8 @@ python3 skills/logicmso/analyze_protocol.py capture.bin --export transitions.csv
 python3 skills/logicmso/analyze_protocol.py capture.bin --raw -n 50
 ```
 
+See [examples.md](examples.md) for full worked end-to-end captures: unknown-protocol triage, and UART, SPI, I2C, and 1-Wire decoding with runnable Python.
+
 ## Common Protocol Patterns
 
 ### UART (Asynchronous Serial)
