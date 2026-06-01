@@ -47,6 +47,13 @@ IoTHackBot is a collection of specialized tools and Claude Code skills designed 
 
 ### Hardware & Console Access
 
+- **jtagprobe** - SWD/JTAG debug interface probe via SEGGER J-Link
+  - Classifies targets as OPEN / LOCKED / DEAD
+  - Sweeps SWD then JTAG across multiple clock speeds
+  - Decodes DPIDR / IDCODE to vendor (STM32, NXP, Nordic, TI, ...)
+  - Halt + memory read to confirm true debugger control
+  - Per-attempt JLinkExe stdout captured for pentest evidence
+
 - **picocom** (skill) - IoT UART console interaction for hardware testing
   - Bootloader manipulation
   - Shell enumeration
@@ -146,6 +153,7 @@ IoTHackBot is available as a Claude Code plugin, providing AI-assisted security 
 | **jadx** | Android APK decompilation to Java source |
 | **ffind** | Firmware file analysis with filesystem extraction |
 | **iotnet** | IoT network traffic analysis |
+| **jtagprobe** | SWD/JTAG debug interface probe via J-Link |
 | **netflows** | Network flow extraction with DNS hostname resolution |
 | **nmap** | Professional network reconnaissance |
 | **onvifscan** | ONVIF device security testing |
