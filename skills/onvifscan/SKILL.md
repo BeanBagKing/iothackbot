@@ -77,4 +77,4 @@ onvifscan brute 192.168.1.100 --usernames custom-users.txt --passwords custom-pa
 - Auth scan is non-destructive and safe to run
 - Use `-a` flag with caution - may test destructive endpoints
 - Brute force is rate-limited to prevent device overload (max 20 attempts by default)
-- Built-in wordlists located in `wordlists/` directory
+- Built-in wordlists located in `${CLAUDE_PLUGIN_ROOT}/wordlists/`

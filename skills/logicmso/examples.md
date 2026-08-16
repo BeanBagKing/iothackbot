@@ -6,22 +6,22 @@
 
 ### Step 1: Get an overview
 ```bash
-python3 skills/logicmso/analyze_protocol.py capture.bin
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py capture.bin
 ```
 
 ### Step 2: Look at timing distribution
 ```bash
-python3 skills/logicmso/analyze_protocol.py capture.bin --histogram --clusters
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py capture.bin --histogram --clusters
 ```
 
 ### Step 3: Examine raw transitions
 ```bash
-python3 skills/logicmso/analyze_protocol.py capture.bin --raw -n 50
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py capture.bin --raw -n 50
 ```
 
 ### Step 4: Export for external analysis
 ```bash
-python3 skills/logicmso/analyze_protocol.py capture.bin --export transitions.csv
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py capture.bin --export transitions.csv
 ```
 
 ---
@@ -37,7 +37,7 @@ Look for these characteristics:
 - Durations are multiples of the bit period
 
 ```bash
-python3 skills/logicmso/analyze_protocol.py uart_capture.bin --clusters
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py uart_capture.bin --clusters
 ```
 
 If the analyzer suggests UART with a specific baud rate:

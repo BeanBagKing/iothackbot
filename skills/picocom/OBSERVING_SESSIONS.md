@@ -10,7 +10,7 @@ The `serial_helper.py` script now includes built-in session logging that capture
 
 **Terminal 1 - Run the helper script with logging:**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --prompt "User@[^>]+>" \
   --logfile /tmp/serial_session.log \
@@ -92,7 +92,7 @@ sudo socat /dev/ttyUSB0,raw,echo=0,b115200 /tmp/vserial0
 
 **Terminal 3 - Use helper script on the bridge:**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /tmp/vserial1 \
   --prompt "User@[^>]+>" \
   --interactive
@@ -151,7 +151,7 @@ For read-only observation without interfering with the helper script:
 
 **Terminal 1 - Run helper script normally:**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --interactive
 ```
@@ -203,7 +203,7 @@ When Claude is using the skill to interact with your device:
 
 1. Use the interactive mode with logging:
    ```bash
-   python3 .claude/skills/picocom/serial_helper.py \
+   python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
      --device /dev/ttyUSB0 \
      --prompt "User@[^>]+>" \
      --logfile /tmp/debug.log \
@@ -318,7 +318,7 @@ sleep 1
 
 4. **Use --debug with --logfile** to get both debug info and I/O logs:
    ```bash
-   python3 .claude/skills/picocom/serial_helper.py \
+   python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
      --device /dev/ttyUSB0 \
      --command "help" \
      --logfile session.log \
@@ -359,7 +359,7 @@ sleep 1
 **Key Command:**
 ```bash
 # Start with logging
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --prompt "User@[^>]+>" \
   --logfile /tmp/session.log \

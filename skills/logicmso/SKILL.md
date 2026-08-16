@@ -74,19 +74,19 @@ This skill includes helper scripts for common analysis tasks:
 
 ```bash
 # Analyze signal characteristics
-python3 skills/logicmso/analyze_protocol.py capture.bin
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py capture.bin
 
 # Show detailed timing histogram
-python3 skills/logicmso/analyze_protocol.py capture.bin --histogram
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py capture.bin --histogram
 
 # Show detected timing clusters
-python3 skills/logicmso/analyze_protocol.py capture.bin --clusters
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py capture.bin --clusters
 
 # Export transitions to CSV
-python3 skills/logicmso/analyze_protocol.py capture.bin --export transitions.csv
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py capture.bin --export transitions.csv
 
 # Show raw transition values
-python3 skills/logicmso/analyze_protocol.py capture.bin --raw -n 50
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/logicmso/analyze_protocol.py capture.bin --raw -n 50
 ```
 
 See [examples.md](examples.md) for full worked end-to-end captures: unknown-protocol triage, and UART, SPI, I2C, and 1-Wire decoding with runnable Python.

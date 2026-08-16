@@ -30,7 +30,7 @@ You can specify a custom log file location:
 
 ```bash
 # Terminal 1: Run commands with custom logfile
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --logfile /tmp/my_session.log \
@@ -52,7 +52,7 @@ tmux new -s iot_pentest
 # Or split vertically (Ctrl-b then %)
 
 # In the top pane: Run your commands
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --interactive
@@ -76,7 +76,7 @@ screen -S iot_pentest
 # Create a new shell in that region (Ctrl-a then c)
 
 # In the top pane: Run your commands
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --interactive
@@ -95,7 +95,7 @@ Simply open two terminal windows side-by-side:
 
 **Window 1:**
 ```bash
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --interactive
@@ -182,7 +182,7 @@ tail -f /tmp/telnet_session.log | colordiff
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 LOGFILE="/tmp/telnet_${TIMESTAMP}.log"
 
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --logfile "$LOGFILE" \
@@ -198,13 +198,13 @@ If you're working with multiple devices simultaneously:
 
 ```bash
 # Device 1
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --logfile /tmp/device1.log \
   --interactive &
 
 # Device 2
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.200 \
   --logfile /tmp/device2.log \
   --interactive &
@@ -269,7 +269,7 @@ tmux new -s camera_pentest
 # Step 2 (top pane): Create a timestamped logfile and start interactive session
 LOGFILE="/tmp/camera_$(date +%Y%m%d_%H%M%S).log"
 echo "Logfile: $LOGFILE"
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --logfile "$LOGFILE" \

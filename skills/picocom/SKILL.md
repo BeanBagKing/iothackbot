@@ -44,40 +44,40 @@ The helper script solves many problems with direct picocom usage:
 
 **Single Command:**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --command "help"
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --command "help"
 ```
 
 **With Custom Prompt (recommended for known devices):**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --prompt "User@[^>]+>" --command "ifconfig"
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --prompt "User@[^>]+>" --command "ifconfig"
 ```
 
 **Interactive Mode:**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --interactive
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --interactive
 ```
 
 **Batch Commands from File:**
 ```bash
 # Create a file with commands (one per line)
 echo -e "help\ndate\nifconfig\nps" > commands.txt
-python3 .claude/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --script commands.txt
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --script commands.txt
 ```
 
 **JSON Output (for parsing):**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --command "help" --json
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --command "help" --json
 ```
 
 **Debug Mode:**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --command "help" --debug
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py --device /dev/ttyUSB0 --command "help" --debug
 ```
 
 **Session Logging (for observation):**
 ```bash
 # Terminal 1 - Run with logging
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --prompt "User@[^>]+>" \
   --logfile /tmp/session.log \
@@ -103,7 +103,7 @@ See [examples.md](examples.md) for full worked attack walkthroughs: basic connec
 
 **Basic passive monitoring:**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --monitor \
   --duration 30 \
@@ -113,7 +113,7 @@ python3 .claude/skills/picocom/serial_helper.py \
 **Monitor with external trigger script:**
 ```bash
 # Run external script after 5 seconds and capture triggered UART output
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --monitor \
   --duration 60 \
@@ -125,7 +125,7 @@ python3 .claude/skills/picocom/serial_helper.py \
 **Monitor with baseline capture:**
 ```bash
 # Capture 10s baseline, run trigger at 15s, continue for total 60s
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --monitor \
   --duration 60 \
@@ -210,21 +210,21 @@ The helper script includes common prompt patterns, but you can specify custom on
 **Basic AT command usage:**
 ```bash
 # Single AT command
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --at-mode \
   --command "AT" \
   --logfile /tmp/serial_session.log
 
 # Get modem info
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --at-mode \
   --command "ATI" \
   --logfile /tmp/serial_session.log
 
 # Get IMEI
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --at-mode \
   --command "AT+CGSN" \
@@ -233,7 +233,7 @@ python3 .claude/skills/picocom/serial_helper.py \
 
 **AT mode enumeration example:**
 ```bash
-HELPER="python3 .claude/skills/picocom/serial_helper.py"
+HELPER="python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py"
 DEVICE="/dev/ttyUSB0"
 LOGFILE="/tmp/serial_session.log"
 
@@ -271,7 +271,7 @@ AT+COPS?
 EOF
 
 # Execute batch
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --at-mode \
   --script at_enum.txt \
@@ -280,7 +280,7 @@ python3 .claude/skills/picocom/serial_helper.py \
 
 **Interactive AT session:**
 ```bash
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --at-mode \
   --interactive \
@@ -322,7 +322,7 @@ Here's a complete example of safely enumerating a device:
 
 ```bash
 # Set variables for convenience
-HELPER="python3 .claude/skills/picocom/serial_helper.py"
+HELPER="python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py"
 DEVICE="/dev/ttyUSB0"
 PROMPT="User@[^>]+>"  # Adjust for your device
 LOGFILE="/tmp/serial_session.log"
@@ -359,7 +359,7 @@ A common IoT pentesting scenario: testing if network requests, API calls, or har
 **Example: Testing if API requests generate UART logs**
 ```bash
 # Monitor UART while sending network request
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --monitor \
   --duration 30 \
@@ -374,7 +374,7 @@ cat /tmp/api_test.log
 **Example: Testing authentication attempts**
 ```bash
 # Monitor UART during login attempts
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --monitor \
   --duration 45 \
@@ -388,7 +388,7 @@ python3 .claude/skills/picocom/serial_helper.py \
 **Example: Boot sequence analysis**
 ```bash
 # Capture device boot logs (reboot via network API)
-python3 .claude/skills/picocom/serial_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/picocom/serial_helper.py \
   --device /dev/ttyUSB0 \
   --monitor \
   --duration 120 \

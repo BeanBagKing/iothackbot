@@ -44,45 +44,45 @@ The helper script solves many problems with direct telnet usage:
 
 **Single Command:**
 ```bash
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --command "uname -a"
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --command "uname -a"
 ```
 
 **Custom Port:**
 ```bash
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --port 2222 --command "ls /"
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --port 2222 --command "ls /"
 ```
 
 **With Custom Prompt (recommended for known devices):**
 ```bash
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --prompt "^/ [#\$]" --command "ifconfig"
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --prompt "^/ [#\$]" --command "ifconfig"
 ```
 
 **Interactive Mode:**
 ```bash
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --port 2222 --interactive
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --port 2222 --interactive
 ```
 
 **Batch Commands from File:**
 ```bash
 # Create a file with commands (one per line)
 echo -e "uname -a\ncat /proc/version\nifconfig\nps" > commands.txt
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --script commands.txt
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --script commands.txt
 ```
 
 **JSON Output (for parsing):**
 ```bash
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --command "uname -a" --json
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --command "uname -a" --json
 ```
 
 **Debug Mode:**
 ```bash
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --command "ls" --debug
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --command "ls" --debug
 ```
 
 **Session Logging (for observation):**
 ```bash
 # Terminal 1 - Run with logging
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --logfile /tmp/session.log \
@@ -141,7 +141,7 @@ Here's a complete example of safely enumerating a device:
 
 ```bash
 # Set variables for convenience
-HELPER="python3 .claude/skills/telnetshell/telnet_helper.py"
+HELPER="python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py"
 HOST="192.168.1.100"
 PORT="2222"
 LOGFILE="/tmp/telnet_session.log"
@@ -411,14 +411,14 @@ busybox httpd -p 8000
 ### Scenario 1: No Authentication Shell
 ```bash
 # Connect - drops directly to root shell
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --interactive
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --interactive
 # Enumerate and exploit
 ```
 
 ### Scenario 2: Custom Port No-Auth Shell
 ```bash
 # Many IoT cameras use port 2222
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --port 2222 --interactive
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --port 2222 --interactive
 ```
 
 ### Scenario 3: Password-Protected Shell
@@ -496,37 +496,37 @@ The skill includes pre-built enumeration scripts for common tasks:
 
 **Usage:**
 ```bash
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
-  --script .claude/skills/telnetshell/enum_system.txt
+  --script ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/enum_system.txt
 ```
 
 ## Example Usage
 
 ```bash
 # Basic connection to standard telnet port
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --command "uname -a"
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --command "uname -a"
 
 # Connection to custom port (common for IoT cameras)
-python3 .claude/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --port 2222 --command "ls /"
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py --host 192.168.1.100 --port 2222 --command "ls /"
 
 # Interactive session with logging
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --logfile /tmp/camera_session.log \
   --interactive
 
 # Batch enumeration
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --port 2222 \
   --script enum_system.txt \
   --json > results.json
 
 # Long-running command with custom timeout
-python3 .claude/skills/telnetshell/telnet_helper.py \
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/telnetshell/telnet_helper.py \
   --host 192.168.1.100 \
   --timeout 10 \
   --command "find / -name '*.conf'"
