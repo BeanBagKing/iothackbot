@@ -13,7 +13,7 @@ This skill enables analysis of captured signals from Saleae Logic MSO devices us
   ```bash
   python3 -c "from saleae.mso_api.binary_files import read_file; print('saleae-mso-api is available')"
   ```
-  Only if that fails, install it: `pip install saleae-mso-api`
+  Only if that fails, install it with uv (preferable) or pip with `--extra-index-url`. See: https://docs.saleae.com/mso-api/v0.5.8/installation.html
 - Binary export files from Saleae Logic software (`.bin` format)
 
 ## Quick Reference

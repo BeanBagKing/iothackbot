@@ -16,7 +16,9 @@ import numpy as np
 try:
     from saleae.mso_api.binary_files import read_file
 except ImportError:
-    print("Error: saleae-mso-api not installed. Run: pip install saleae-mso-api")
+    print("Error: saleae-mso-api not installed. Install it with uv (preferable) "
+          "or pip with --extra-index-url. "
+          "See: https://docs.saleae.com/mso-api/v0.5.8/installation.html")
     sys.exit(1)
 
 
