@@ -70,12 +70,29 @@ IoTHackBot is a collection of specialized tools and Claude Code skills designed 
 
 ### Prerequisites
 
-```bash
-# Python dependencies
-pip install colorama pyserial pexpect requests
-
+```markdown
 # System dependencies (Arch Linux)
 sudo pacman -S nmap e2fsprogs f2fs-tools python python-pip inetutils
+
+# Python dependencies (Arch Linux)
+pip install colorama pyserial pexpect requests
+
+# System dependencies (Ubuntu 26.04)
+sudo apt install -y git python3 python3-pip python3-venv e2fsprogs f2fs-tools util-linux mount file tshark nmap picocom telnet jq binwalk expect screen default-jdk apktool zipalign
+
+# Python dependencies (Ubuntu 26.04)
+sudo apt install -y python3-colorama python3-requests python3-pexpect python3-serial python3-numpy python3-magic python3-scapy
+
+## venv setup for requirements that don't have system binaries (Ubuntu 26.04)
+1. Create a python venv: `python3 -m venv --system-site-packages ~/.venvs/iothackbot && . ~/.venvs/iothackbot/bin/activate`
+2. Install pip dependencies: `pip install pyshark chipsec`
+3. Run `echo -e "\nexport PATH=\"$VIRTUAL_ENV/bin:\$PATH\"" >> ~/.bashrc`
+5. Open a new terminal, start Claude and run `python3 -c "import sys, pyshark, colorama; print(sys.executable)"` to verify you can get to the dependencies'
+
+# Extras
+jadx for jadx skill - https://github.com/skylot/jadx#install
+JLinkExe for jtagprobe skill - https://www.segger.com/downloads/jlink/
+saleae-mso-api for logicmso skill - https://docs.saleae.com/mso-api/v0.5.8/installation.html
 
 # For other distributions, install equivalent packages
 ```
@@ -90,12 +107,12 @@ cd iothackbot
 
 2. Add the bin directory to your PATH:
 ```bash
-export PATH="$PATH:$(pwd)/bin"
+export PATH="$(pwd)/bin:$PATH"
 ```
 
 3. For permanent setup, add to your shell configuration:
 ```bash
-echo 'export PATH="$PATH:/path/to/iothackbot/bin"' >> ~/.bashrc
+echo -e '\nexport PATH="/path/to/iothackbot/bin:$PATH"' >> ~/.bashrc
 ```
 
 ## Usage
