@@ -171,29 +171,24 @@ claude --plugin-dir /path/to/iothackbot
 
 **Option 2: Install as local marketplace (persistent)**
 
-Add to `~/.claude/settings.json`:
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "iothackbot-local": {
-      "source": {
-        "source": "directory",
-        "path": "/path/to/iothackbot"
-      }
-    }
-  },
-  "enabledPlugins": {
-    "iothackbot": true
-  }
-}
+```bash
+claude plugin marketplace add /path/to/iothackbot
+claude plugin install iothackbot@iothackbot-marketplace
 ```
 
-Then restart Claude Code for the settings to take effect.
+Then restart Claude Code for the skills to load.
 
-**Option 3: Project-specific setup**
+Note the marketplace is `iothackbot-marketplace` — that name comes from the
+`name` field in `.claude-plugin/marketplace.json`, not from the directory name
+or from whatever key you use in settings. Verify with:
 
-For use within a specific project, the skills are also available via the `.claude/skills/` symlink for backwards compatibility.
+```bash
+claude plugin list          # should show iothackbot@iothackbot-marketplace, enabled
+```
+
+Editing `~/.claude/settings.json` by hand also works, but `enabledPlugins` keys
+must use the full `plugin@marketplace` form — a bare `"iothackbot": true` never
+resolves and silently installs nothing.
 
 ## Tool Architecture
 
